@@ -18,8 +18,21 @@
     font-size: 2em;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the elements */
+}
+
+.github-icon {
+    display: inline-block;
+    width: 35px; /* Adjust the width as needed */
+    height: 35px; /* Adjust the height as needed */
+    margin-right:3px;
+}
+
 .site-footer {
-    border-top: 2px solid grey;
+    display: none;
 }
 
 body {
