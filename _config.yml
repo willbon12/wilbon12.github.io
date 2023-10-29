@@ -29,6 +29,9 @@ github_username:  willbon12
 
 # Build settings
 theme: minima
+minima:
+  custom_css: ['/assets/main.scss']
+
 plugins:
   - jekyll-feed
 
