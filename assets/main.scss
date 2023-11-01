@@ -4,39 +4,59 @@
 @import "minima";
 
 .site-header {
+    border-bottom: 1px solid rgb(138, 114, 114);   
+}
+
+.site-header .wrapper {
     height: 100px;
-    
-    background-image: url('/assets/images/hero.jpg'); /* Update the path to your image */
-    background-size: cover; /* Adjust as needed */
-    background-position: center; /* Adjust as needed */
-    background-repeat: no-repeat;
 
-    border-bottom: 2px solid grey;    
-}
-
-.site-title {
-    font-size: 2em;
-}
-
-.wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically center the elements */
+    align-items: center;     
 }
 
-.github-icon {
-    display: inline-block;
+/* Adjust the spacing and alignment */
+.site-header .github-icon {
+    /* Adjust the logo's margin or padding as needed */
+    margin-right: 20px; /* Adds spacing to the right of the logo */
     width: 35px; /* Adjust the width as needed */
     height: 35px; /* Adjust the height as needed */
-    margin-right:3px;
 }
+
+.site-header .site-title {
+    font-size: 2em;
+    /* Center the site title */
+    text-align: center;
+    flex-grow: 1; /* Allows the title to grow and take up available space */
+}
+
+.site-header .site-nav {
+    /* Place "About" link on the far right */
+    order: 3; /* Ensures the "About" link is on the right */
+    margin-left: auto; /* Pushes the "About" link to the right */
+  }
 
 .site-footer {
     display: none;
 }
 
+/* Light mode styles */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    /* Add more light mode styles here */
+}
+
+/* Dark mode styles */
+.dark-mode {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    /* Add more dark mode styles here */
+}
+
 body {
-    background-color: #d47550a4; /* Replace with your desired background color */
+    background-color: #e6d8d3a4; /* Replace with your desired background color */
+    font-family: "Roboto Mono", monospace, sans-serif;
   }
 
 .language-plaintext.highlighter-rouge {
