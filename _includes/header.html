@@ -1,9 +1,13 @@
 <header class="site-header" role="banner">
-
     <div class="wrapper">
       <a class="github-icon" href="https://github.com/willbon12" rel="author">
         <img src="/assets/images/github-mark.png" alt="GitHub">
       </a>
+      <!-- Light/Dark Mode Toggle Button -->
+      <label class="theme-switch" for="theme-toggle">
+        <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+        <span class="theme-toggle-slider"></span>
+      </label>      
       {%- assign default_paths = site.pages | map: "path" -%}
       {%- assign page_paths = site.header_pages | default: default_paths -%}
       <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
