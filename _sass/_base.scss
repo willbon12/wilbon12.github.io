@@ -1,0 +1,38 @@
+.site-header {
+    border-bottom: 1px solid rgb(138, 114, 114);
+    .wrapper {
+      height: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .github-icon {
+      margin-right: 20px;
+      width: 35px;
+      height: 35px;
+    }
+    .site-title {
+      font-size: 2em;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .site-nav {
+      order: 3;
+      margin-left: auto;
+    }
+  }
+  
+.site-footer {
+display: none;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Roboto Mono", monospace, sans-serif;
+}
+
+/* Style the site-title */
+.site-title, .site-nav .page-link {
+    color: var(--site-title-color) !important;
+}

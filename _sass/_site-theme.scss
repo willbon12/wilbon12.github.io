@@ -1,0 +1,61 @@
+/* Light mode styles */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --site-title-color: #333333;
+    --site-nav-color: #333333;
+    --slider-bg-color: #333333;
+    /* Add more light mode styles here */
+}
+
+/* Dark mode styles */
+.dark-mode {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --site-title-color: #ffffff;
+    --site-nav-color: #ffffff;
+    --slider-bg-color: #ffffff;
+    /* Add more dark mode styles here */
+}
+
+/* Style the label for the theme switch */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 32px; /* Adjust the width to match the moon symbol's width */
+  height: 32px; /* Adjust the height to match the moon symbol's height */
+  background-color: rgba(204, 204, 204, 0.5); /* Semi-transparent background color */
+  border: 2px solid transparent #333; /* Border style, width, and color */
+  border-radius: 50%; /* Make it round */
+  box-sizing: border-box;
+}
+
+/* Style the slider (the visual indicator) */
+.theme-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--slider-bg-color, #333333);; /* Background color for the switch in the 'on' state */
+  border-radius: 50%; /* Make it round */
+  transition: 0.4s; /* Add a smooth transition for sliding */
+}
+
+/* Styling for the slider in the 'on' state */
+.theme-toggle-checkbox:checked + .theme-toggle-slider {
+  background-color: var(--slider-bg-color, #ffffff); /* Change color to indicate 'on' state */
+}
+
+/* Style the moon symbol (pseudo-element) */
+.theme-switch::before {
+  content: '🌙'; /* You can use any icon or symbol here, like a sun or moon */
+  display: inline-block;
+  font-size: 24px; /* Adjust size as needed */
+  position: absolute;
+  top: 50%;
+  left: 50%; /* Center the symbol horizontally */
+  transform: translate(-50%, -50%); /* Center the symbol both vertically and horizontally */
+  z-index: 1; /* Ensure the symbol is displayed above the slider */
+}
