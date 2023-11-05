@@ -1,10 +1,8 @@
 ---
 layout: page
-title: SoccerGame
-permalink: /SoccerTicTacToe/
+title: TicTacToe
+permalink: /TicTacToe/
 ---
-
-# Tic-Tac-Toe Game
 
 <table class="tic-tac-toe">
     <tr>
@@ -24,4 +22,4 @@ permalink: /SoccerTicTacToe/
     </tr>
 </table>
 <div id="result-message"></div>
-<script src="{{ site.baseurl }}/assets/javascript/soccer-tic-tac-toe.js"></script>
+<script src="{{ site.baseurl }}/assets/javascript/tic-tac-toe.js"></script>
