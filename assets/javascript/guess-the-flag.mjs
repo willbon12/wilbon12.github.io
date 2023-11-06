@@ -38,6 +38,11 @@ function hideLoadingMessage() {
   loadingMessage.style.display = 'none';
 }
 
+function showCountryName(name) {
+  const countryName = document.getElementById('country-name');
+  countryName =  name;
+}
+
 // Function to validate the user's guess
 function validateGuess() {
   const userGuess = document.getElementById('user-guess').value;
@@ -48,6 +53,13 @@ function validateGuess() {
   } else {
       showMessage('Incorrect.');
   }
+  showCountryName(correctName)
+  showLoadingMessage()
+  // Add a 3-second delay before reloading the page
+  setTimeout(function () {location.reload(); // Reload the page to move on to the next flag
+  }, 3000);
+}
+function skipGuess() {
   showLoadingMessage()
   // Add a 3-second delay before reloading the page
   setTimeout(function () {location.reload(); // Reload the page to move on to the next flag
@@ -60,8 +72,11 @@ fetchYamlData()
     displayRandomFlag(data);
     hideLoadingMessage();
     // Add an event listener to the submit button
+    const skipButton = document.getElementById('skip-guess');
+    skipButton.addEventListener('click', skipGuess);
     const submitButton = document.getElementById('submit-guess');
     submitButton.addEventListener('click', validateGuess);
+
   })
     .catch(error => {
         console.error('Error fetching YAML data:', error);

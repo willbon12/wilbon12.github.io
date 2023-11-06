@@ -10,11 +10,14 @@ permalink: /GuessTheFlag/
 <div id="guess-container">
     <input type="text" id="user-guess" placeholder="Guess the country name">
     <button id="submit-guess">Submit</button>
+    <button id="skip-guess">Skip</button>
 </div>
 
 <div id="message-container">
     <p id="message"></p>
 </div>
+
+<div id="country-name"></div>
 
 <div id="loading-message">Loading...</div>
 
