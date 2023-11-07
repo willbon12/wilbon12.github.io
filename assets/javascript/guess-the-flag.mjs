@@ -1,20 +1,23 @@
 // Import 'js-yaml' directly from the CDN
 import jsyaml from 'https://cdn.skypack.dev/js-yaml';
 
+let randomCountry;
+let data;
+
 // Function to fetch and parse YAML data
 async function fetchYamlData() {
     const response = await fetch('/_data/countries.yml');
     const text = await response.text();
-    return jsyaml.load(text);
+    data = jsyaml.load(text);
 }
 
 // Function to display a random flag
-function displayRandomFlag(data) {
+function displayRandomFlag() {
     // Choose a random index within the data array
     const randomIndex = Math.floor(Math.random() * data.length);
 
     // Get the random country's flag URL
-    const randomCountry = data[randomIndex];
+    randomCountry = data[randomIndex];
     const flagImage = document.getElementById('country-flag');
     flagImage.src = randomCountry.flag;
     flagImage.dataset.correctName = randomCountry.name;
@@ -22,15 +25,36 @@ function displayRandomFlag(data) {
 
 // Function to display a message on the screen
 function showMessage(message) {
-  const messageElement = document.getElementById('message');
+  const messageElement = document.getElementById('message-container');
   messageElement.textContent = message;
+  messageElement.style.display = 'block';
 }
 
-// Function to show the loading message
+// Function to hide the loading message
+function hideMessage() {
+  const messageElement = document.getElementById('message-container');
+  messageElement.style.display = 'none';
+}
+
+// Function to show the loading message with changing ellipsis
 function showLoadingMessage() {
   const loadingMessage = document.getElementById('loading-message');
   loadingMessage.style.display = 'block';
+
+  let counter = 0; // Initialize a counter for the ellipsis
+  loadingMessage.textContent = 'Loading';
+
+  const loadingInterval = setInterval(function () {
+    loadingMessage.textContent += '.'; // Add a dot to the message
+    counter++;
+  }, 800); // Update every 1 second (1000 milliseconds)
+
+  // Clear the interval after 3 seconds (3 cycles)
+  setTimeout(function () {
+    clearInterval(loadingInterval);
+  }, 3200); // Stop after 3 seconds
 }
+
 
 // Function to hide the loading message
 function hideLoadingMessage() {
@@ -38,9 +62,20 @@ function hideLoadingMessage() {
   loadingMessage.style.display = 'none';
 }
 
-function showCountryName(name) {
+// Function to hide the loading message
+function hideCountryName() {
   const countryName = document.getElementById('country-name');
-  countryName =  name;
+  countryName.style.display = 'none';
+}
+
+function showCountryName() {
+  const countryName = document.getElementById('country-name');
+  countryName.style.display = 'block';
+  countryName.textContent = 'Correct country: '+ randomCountry.name;
+}
+
+function clearUserGuess() {
+  document.getElementById('user-guess').value = '';
 }
 
 // Function to validate the user's guess
@@ -49,35 +84,50 @@ function validateGuess() {
   const correctName = document.getElementById('country-flag').dataset.correctName;
 
   if (userGuess.toLowerCase() === correctName.toLowerCase()) {
-      showMessage('Correct! You guessed the country name.');
+      showMessage('Correct!');
   } else {
-      showMessage('Incorrect.');
+      showMessage('Incorrect');
+      showCountryName()
   }
-  showCountryName(correctName)
+
   showLoadingMessage()
-  // Add a 3-second delay before reloading the page
-  setTimeout(function () {location.reload(); // Reload the page to move on to the next flag
+
+  // Add a 3-second delay before calling runGame
+  setTimeout(function () {
+    runGame();
   }, 3000);
 }
+
 function skipGuess() {
-  showLoadingMessage()
-  // Add a 3-second delay before reloading the page
-  setTimeout(function () {location.reload(); // Reload the page to move on to the next flag
-  }, 3000);
+  runGame();
 }
 
 // Fetch YAML data and display a random flag
-fetchYamlData()
-  .then(data => {
-    displayRandomFlag(data);
-    hideLoadingMessage();
-    // Add an event listener to the submit button
-    const skipButton = document.getElementById('skip-guess');
-    skipButton.addEventListener('click', skipGuess);
-    const submitButton = document.getElementById('submit-guess');
-    submitButton.addEventListener('click', validateGuess);
+function runGame() {
+  clearUserGuess()
+  hideMessage();
+  hideLoadingMessage();
+  hideCountryName();
+  displayRandomFlag();
+}
 
-  })
-    .catch(error => {
-        console.error('Error fetching YAML data:', error);
-    });
+function addEventListeners() {
+  const skipButton = document.getElementById('skip-guess');
+  skipButton.addEventListener('click', skipGuess);
+  const submitButton = document.getElementById('submit-guess');
+  submitButton.addEventListener('click', validateGuess);
+}
+
+async function gameInit() {
+  try {
+    await fetchYamlData();
+    addEventListeners();
+    hideLoadingMessage();
+    runGame();
+  } catch (error) {
+    console.error('Error initializing the game:', error);
+  }
+}
+
+// Call the runGame function when the page loads
+window.addEventListener('load', gameInit);

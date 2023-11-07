@@ -4,7 +4,7 @@ title: GuessTheFlag
 permalink: /GuessTheFlag/
 ---
 <div id="flag-container">
-  <img id="country-flag" src="" alt="Flag">
+  <img id="country-flag" src="" alt="Flag" style="max-width: 600px; max-height: 600px;">
 </div>
 
 <div id="guess-container">
@@ -13,9 +13,7 @@ permalink: /GuessTheFlag/
     <button id="skip-guess">Skip</button>
 </div>
 
-<div id="message-container">
-    <p id="message"></p>
-</div>
+<div id="message-container"></div>
 
 <div id="country-name"></div>
 
