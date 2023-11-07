@@ -79,7 +79,7 @@ function clearUserGuess() {
 }
 
 // Function to validate the user's guess
-function validateGuess() {
+function validateGuess(event) {
   const userGuess = document.getElementById('user-guess').value;
   const correctName = document.getElementById('country-flag').dataset.correctName;
 
@@ -110,6 +110,14 @@ function runGame() {
   hideCountryName();
   displayRandomFlag();
 }
+
+// Function to submit the form when Enter key is pressed
+document.getElementById('user-guess').addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent the default Enter behavior
+      document.getElementById('submit-guess').click(); // Simulate a click on the "Submit" button
+  }
+});
 
 function addEventListeners() {
   const skipButton = document.getElementById('skip-guess');

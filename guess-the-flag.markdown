@@ -4,12 +4,12 @@ title: GuessTheFlag
 permalink: /GuessTheFlag/
 ---
 <div id="flag-container">
-  <img id="country-flag" src="" alt="Flag" style="max-width: 600px; max-height: 600px;">
+  <img id="country-flag" src="" alt="Flag" style="max-width: 600px; max-height: 500px;">
 </div>
 
 <div id="guess-container">
     <input type="text" id="user-guess" placeholder="Guess the country name">
-    <button id="submit-guess">Submit</button>
+    <button type="sumbit" id="submit-guess">Submit</button>
     <button id="skip-guess">Skip</button>
 </div>
 
